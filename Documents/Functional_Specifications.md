@@ -75,9 +75,13 @@ Our Target audience will be small and medium sized sawmills that work with small
 
 ## <b>The Optimisation Algorythm</b>
 
-<span style="color: #FF0000"><b>
-/!\ The following algorithm is only one way of doing the calculation, it may not be best nor the most efficient of all as it is impossible to take into account the infinite number of variable in the shape of a wood log. People sawing wood should always verify that the output of this algorithm is possible in the specific case of the log they are sawing.
-</b></span>
+<b>
+
+```diff
+- /!\ The following algorithm is only one way of doing the calculation, it may not be best nor the most efficient of all as it is impossible to take into account the infinite number of variable in the shape of a wood log. People sawing wood should always verify that the output of this algorithm is possible in the specific case of the log they are sawing.
+```
+
+</b>
 
 <b>Introduction:</b>
 
@@ -99,31 +103,17 @@ Now you can rotate the log 90° one last time and cut your final sections until 
 
 <b>Exemple:</b>
 
-<span style="color: #00FFFF">
-<b>
+*You want to make a piece of lumber<sup>[1](#lumber)</sup> that is 150x150mm in a log of diameter 600mm*
 
-You want to make a piece of lumber<sup>[1](#lumber)</sup> that is 150x150mm in a log of diameter 600mm
+*Step 1: You cut the first pieces until your reach about 75 to 80% of the log (depending of the log’s shape)*
 
-Step 1:
-You cut the first pieces until your reach about 75 to 80% of the log (depending of the log’s shape)
+*Step 2: You rotate the log 90°. You cut until you have an angle with no bark left*
 
-Step 2:
-You rotate the log 90°
-You cut until you have an angle with no bark left
+*Step 3: You rotate the log 90°. You have let’s say 480mm, you’ll need 150mm for the last piece you want, which leaves you with 330mm to work with to do other pieces (bark on top still remaining), you can divide it to see what you can do with it. In our example we can do up to 15 planks of 18mm (remember to take into account the thickness of the blade in this exemple 4mm). Now you’re left with the log 150mm high and still one side with bark (around 480mm)*
 
-Step 3:
-You rotate the log 90°
-You have let’s say 480mm, you’ll need 150mm for the last piece you want, which leaves you with 330mm to work with to do other pieces (bark on top still remaining), you can divide it to see what you can do with it. In our example we can do up to 15 planks of 18mm (remember to take into account the thickness of the blade in this exemple 4mm)
-Now you’re left with the log 150mm high and still one side with bark (around 480mm)
+*Step 4: You rotate the log 90°. You have again 480mm in height so you do the same as before and your planks are now directly cut to their final form and you’re left with your 150x150mm in the end*
 
-Step 4:
-You rotate the log 90°
-You have again 480mm in height so you do the same as before and your planks are now directly cut to their final form and you’re left with your 150x150mm in the end
-
-So in this example we were able to saw 1 150x150mm and up to 30 18x150mm in one log but with big losses in the corners.
-
-</b>
-</span>
+*So in this example we were able to saw 1 150x150mm and up to 30 18x150mm in one log but with big losses in the corners.*
 
 <b>The Algorithm:</b>
 
