@@ -75,7 +75,7 @@ Our Target audience will be small and medium sized sawmills that work with small
 
 ## <b>The Optimisation Algorythm</b>
 
-<span style="color: red"><b>
+<span style="color: #FF0000"><b>
 /!\ The following algorithm is only one way of doing the calculation, it may not be best nor the most efficient of all as it is impossible to take into account the infinite number of variable in the shape of a wood log. People sawing wood should always verify that the output of this algorithm is possible in the specific case of the log they are sawing.
 </b></span>
 
@@ -99,7 +99,7 @@ Now you can rotate the log 90° one last time and cut your final sections until 
 
 <b>Exemple:</b>
 
-<span style="color: cyan">
+<span style="color: #00FFFF">
 <b>
 
 You want to make a piece of lumber<sup>[1](#lumber)</sup> that is 150x150mm in a log of diameter 600mm
