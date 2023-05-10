@@ -39,8 +39,8 @@ Our Target audience will be small and medium sized sawmills that work with small
 ## <b>Features</b>
 
 - Give the process to saw a specified lumber<sup>[1](#lumber)</sup> in a given wood log (schematics & measurements)
-    - Give the quantity of Saw dust<sup>[3](#saw-dust)</sup> and wood chips<sup>[4](#wood-chips)</sup> produced in the process (in cubic meters<sup>[5](#cubic-meter)</sup>)
-    - Give the quantity of wood falls<sup>[2](#wood-falls)</sup> produced in the process (in cubic meters<sup>[5](#cubic-meter)</sup>)
+    - Give the quantity of Saw dust<sup>[3](#saw-dust)</sup> and wood chips<sup>[4](#wood-chips)</sup> produced in the process (in cubic metres<sup>[5](#cubic-metre)</sup>)
+    - Give the quantity of wood falls<sup>[2](#wood-falls)</sup> produced in the process (in cubic metres<sup>[5](#cubic-metre)</sup>)
     - Optimise the process of sawing to reduce the number of saw cuts and the quantity of wood falls<sup>[2](#wood-falls)</sup> as much as possible
 - Give different possibility of additional lumber<sup>[1](#lumber)</sup> that can be produce from the same log beside the wanted piece (list of outputted lumber<sup>[1](#lumber)</sup> and number of cuts needed with schematics)
     - Have a table of wanted lumber<sup>[1](#lumber)</sup> from which the software would determine which pieces to incorporate in the additional possible lumber<sup>[1](#lumber)</sup>
@@ -76,11 +76,7 @@ Our Target audience will be small and medium sized sawmills that work with small
 ## <b>The Optimisation Algorythm</b>
 
 <b>
-
-```diff
-- /!\ The following algorithm is only one way of doing the calculation, it may not be best nor the most efficient of all as it is impossible to take into account the infinite number of variable in the shape of a wood log. People sawing wood should always verify that the output of this algorithm is possible in the specific case of the log they are sawing.
-```
-
+/!\ The following algorithm is only one way of doing the calculation, it may not be best nor the most efficient of all as it is impossible to take into account the infinite number of variable in the shape of a wood log. People sawing wood should always verify that the output of this algorithm is possible in the specific case of the log they are sawing.
 </b>
 
 <b>Introduction:</b>
@@ -148,8 +144,8 @@ The output of the algorithm will be the following:
 - A graphic representation of the said process
 - The total number of cuts
 - The outputted lumber<sup>[1](#lumber)</sup> (list with size in mm and number)
-- The Saw dust<sup>[3](#saw-dust)</sup> produced (in cubic meters<sup>[5](#cubic-meter)</sup>)
-- The wood falls<sup>[2](#wood-falls)</sup> produced (in cubic meters<sup>[5](#cubic-meter)</sup>)
+- The Saw dust<sup>[3](#saw-dust)</sup> produced (in cubic metres<sup>[5](#cubic-metre)</sup>)
+- The wood falls<sup>[2](#wood-falls)</sup> produced (in cubic metres<sup>[5](#cubic-metre)</sup>)
 
 
 ## <b>Mobile & Desktop Application</b>
@@ -249,15 +245,27 @@ The alerts will be an optional feature that the user can activate on specific st
 
 ### Lumber:
 
+Lumber is wood that has been processed into uniform and useful sizes (dimensional lumber), including beams and planks or boards. Lumber is mainly used for construction framing, as well as finishing (floors, wall panels, window frames).
+
 ### Wood Falls:
+
+Wood falls define part of the log that are unusable as lumber after cuting mainly the rounded part of the log.
 
 ### Saw dust:
 
+Wood dust produced by the blade when cutting.
+
 ### Wood Chips
 
-### Cubic meter
+Wood chips are basically small part of wood produced by the action of cutting, depending on the blade and method, wood chips can be bigger or smaller, or eventually just saw dust.
+
+### Cubic metre
+
+The cubic metre  or cubic meter (in American English) is the unit of volume in the International System of Units (SI). Its symbol is m<sup>3</sup>. It is the volume of a cube with edges one metre in length.
 
 ### Stere
+
+The stere is measurement unit for wood quantities, it is remarkable by its changing way of calculations depending on the length of the wood logs, for instance for logs that are 1m long 1 stere = 1 cubic metre but if the wood logs are 50 cm long, then 1 stere = 0.8 cubic metre.
 
 ### UI
 
