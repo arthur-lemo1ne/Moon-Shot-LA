@@ -1,21 +1,23 @@
 # <h1 align="center">Functional Specifications</h1>
 
-## <b>Table Of Content</b>
+<details>
+<summary>Table of Content</summary>
 
-1. [Table Of Content](#table-of-content)
-2. [StackeHolders](#stackeholders)
-3. [Context](#context)
-4. [Target Audience](#target-audience)
-5. [Features](#features)
-6. [The Optimisation Algorythm](#the-optimisation-algorythm)
-7. [Mobile & Desktop Application](#mobile--desktop-application)
-8. [Version Planning](#version-planning)
-9. [Software Architecture Design](#software-architecture-design)
-10. [User Interface / Experience](#user-interface--experience)
-11. [Security](#security)
-12. [Error Handling](#error-handling)
-13. [Alerts](#alerts)
-14. [Glossary](#glossary)
+1. [StackeHolders](#stackeholders)
+2. [Context](#context)
+3. [Target Audience](#target-audience)
+4. [Features](#features)
+5. [The Optimisation Algorythm](#the-optimisation-algorythm)
+6. [Mobile & Desktop Application](#mobile--desktop-application)
+7. [Version Planning](#version-planning)
+8. [Software Architecture Design](#software-architecture-design)
+9. [User Interface / Experience](#user-interface--experience)
+10. [Security](#security)
+11. [Error Handling](#error-handling)
+12. [Alerts](#alerts)
+13. [Glossary](#glossary)
+
+</details>
 
 ## <b>Stackeholders</b>
 
@@ -30,7 +32,7 @@ Small sawmills are often less efficient than their bigger counterparts, partiall
 
 Beside the financial losses this issue can cause, there is also an environmental issue as the unused wood will be further transformed (which means more energy cost) to be usable somewhere else while it could have been used as construction wood or any other lumber<sup>[1](#lumber)</sup>.
 
-To try and limit this, [Insert_Software_name] will help small and medium sized sawmills by optimising as much as possible he process of sawing logs. From displaying the possibilities of sawing more lumber<sup>[1](#lumber)</sup> inside one log, to the following of the quantity of wood falls<sup>[2](#wood-falls)</sup> and [Saw dust<sup>[3](#saw-dust)</sup>](#saw-dust). [Insert_Software_name] will allow samwills to upgrade their efficiency nd minimize their losses.
+To try and limit this, [Insert_Software_name] will help small and medium sized sawmills by optimising as much as possible he process of sawing logs. From displaying the possibilities of sawing more lumber<sup>[1](#lumber)</sup> inside one log, to the following of the quantity of wood falls<sup>[2](#wood-falls)</sup> and [Saw dust<sup>[3](#saw-dust)</sup>](#saw-dust). [Insert_Software_name] will allow samwills to upgrade their efficiency and minimize their losses.
 
 ## <b>Target Audience</b>
 

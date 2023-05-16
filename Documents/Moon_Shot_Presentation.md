@@ -7,7 +7,7 @@ Beside the financial losses this issue can cause, there is also an environmental
 
 ## Solution:
 
-Software capable of saying which is one of the most efficient methods to saw a particular wood log given the required lumber, the size of the log and other parameters described below. That software would be available on computer but also in a mobile version to be portable and useable in the field.
+A software capable of saying which is one of the most efficient methods to saw a particular wood log given the required lumber, the size of the log and other parameters described below. That software would be available on computer but also in a mobile version to be portable and useable in the field.
 
 ## Target Audience:
 
