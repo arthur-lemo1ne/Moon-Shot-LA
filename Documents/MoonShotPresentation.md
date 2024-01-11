@@ -1,4 +1,4 @@
-# Moon-Shot Report
+# Moon-Shot Presentation
 ## Problem:
 
 Small sawmills are less efficient than their bigger counterparts, partially due to the fact that they use smaller and usually manual machinery which is more sensitive to human errors. This leads to a loss of potential income as more cuts mean more energy consumed (along with tool durability) and can also lead to the loss of part of the log which could have been used as lumber.

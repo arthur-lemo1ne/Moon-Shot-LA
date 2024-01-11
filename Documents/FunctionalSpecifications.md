@@ -1,6 +1,6 @@
 # <h1 align="center">Functional Specifications</h1>
 
-<p align="right">created : 20/03/2023<br>last modified : 14/12/2023</p>
+<p align="right">created : 20/03/2023<br>last modified : 10/01/2024</p>
 
 <details>
 <summary>Table of Content</summary>
@@ -27,7 +27,6 @@
 - ALGOSUP
 - EIRL ML-Forests
 - SawMill Companies
-- ...
 
 ## <b>Context</b>
 
@@ -130,9 +129,9 @@ The algorithm will take the seven following values as inputs:
 - The thickness of the blade (in mm)
 Alongside the table of wanted lumber<sup>[1](#lumber)</sup> (used to determine what to do with the remaining parts of the log).
 
-With the three first values we can represent the log as follows.
+With the three first values we can represent the log as a cylinder.
 
-[insert_log_representation]
+![LogAsACylinder](../Documents/Images/FunctionalSpecifications/EvenLogEvenGround.png)
 
 Using the height and width of the wanted piece, we need to determine the procedure to saw that specific piece of lumber<sup>[1](#lumber)</sup> with the minimum number of cuts AND the least losses taking into account the thickness of the blade, the bark’s thickness, the percentage of the log usable and the table of wanted lumber<sup>[1](#lumber)</sup>. The remaining wood which isn't usable will be saved as wood falls<sup>[2](#wood-falls)</sup>. 
 
@@ -140,7 +139,7 @@ Using the wood density, the blade thickness and the number of cuts, we will dete
 
 As a reference, the log is always on even ground which means that if there is a difference between the two diameters, the two sides will be aligned on the floor as follows:
 
-[insert_uneven_log_on_even_ground_representation]
+![EvenLogOnEvenGround](../Documents/Images/FunctionalSpecifications/EnevenLogEvenGround.png)
 
 In order to have a high quality and straight lumber<sup>[1](#lumber)</sup>, we will do the calculation from the smaller side.
 
@@ -202,17 +201,7 @@ The second version of the software will contain the mobile app version of the so
 
 ### V 3.0 & +:
 
-As of today, there are no plans for versions of the software above version 2.
-
-## <b>Software Architecture Design</b>
-
-### Desktop Application
-
-![Architecture_Diagram_Desktop](../Documents/Images/Functional_Specifications/Architecture_Diagram_Desktop.png)
-
-### Mobile application
-
-![Architecture_Diagram_Mobile](../Documents/Images/Functional_Specifications/Architecture_Diagram_Mobile.png)
+As of today, there are no plans for versions of the software above version 2
 
 ## <b>User Interface / Experience</b>
 
@@ -232,15 +221,15 @@ Needs:
 
 #### Algorithm
 
-![Flow_Chat_Algorithm](../Documents/Images/Functional_Specifications/Flow_Chart_Algorithm.png)
+![Flow_Chat_Algorithm](../Documents/Images/FunctionalSpecifications/FlowChartAlgorithm.png)
 
 #### Desktop
 
-![Flow_Chat_Desktop](../Documents/Images/Functional_Specifications/Flow_Chart_Dektop.png)
+![Flow_Chat_Desktop](../Documents/Images/FunctionalSpecifications/FlowChartDektop.png)
 
 #### Mobile
 
-![Flow_Chat_Mobile](../Documents/Images/Functional_Specifications/Flow_Chart_Mobile.PNG)
+![Flow_Chat_Mobile](../Documents/Images/FunctionalSpecifications/FlowChartMobile.png)
 
 ## <b>Security</b>
 
