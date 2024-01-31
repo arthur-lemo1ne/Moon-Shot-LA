@@ -129,6 +129,9 @@ The algorithm will take the seven following values as inputs:
 - The thickness of the blade (in mm)
 Alongside the table of wanted lumber<sup>[1](#lumber)</sup> (used to determine what to do with the remaining parts of the log).
 
+> [!caution]
+> Important to note that the table of wanted lumber will be replaced as an input by clients' orders in the second version of the software.
+
 With the three first values we can represent the log as a cylinder.
 
 ![LogAsACylinder](../Documents/Images/FunctionalSpecifications/EvenLogEvenGround.png)
