@@ -37,5 +37,5 @@ I would like the calculation to show solutions with the least possible saw cuts 
 
 ## Ideas to push the project further:
 Stock management ?
-Client order management (which would affect the way the software is divides the logs into lumber) ?
+Client order management (which would affect the way the software divises the logs into lumber) ?
 Get Statistics out of the wood work ?

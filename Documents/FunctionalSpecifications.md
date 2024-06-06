@@ -1,6 +1,6 @@
 # <h1 align="center">Functional Specifications</h1>
 
-<p align="right">created : 20/03/2023<br>last modified : 10/01/2024</p>
+<p align="right">created : 20/03/2023<br>last modified : 28/05/2024</p>
 
 <details>
 <summary>Table of Content</summary>
@@ -119,7 +119,7 @@ Now you can rotate the log 90° one last time and cut your final sections until 
 
 ### <b>The Algorithm:</b>
 
-The algorithm will take the seven following values as inputs:
+The algorithm will take the eight following values as inputs:
 - The log’s length (in mm)
 - The log’s diameter at the foot (in mm)
 - The log’s diameter at the head (in mm)
@@ -127,10 +127,13 @@ The algorithm will take the seven following values as inputs:
 - The height of the lumber<sup>[1](#lumber)</sup> we want (in mm)
 - The width of the lumber<sup>[1](#lumber)</sup> we want (in mm)
 - The thickness of the blade (in mm)
+- The discovery plank height (in mm)
 Alongside the table of wanted lumber<sup>[1](#lumber)</sup> (used to determine what to do with the remaining parts of the log).
 
-> [!caution]
+> [!caution]  
 > Important to note that the table of wanted lumber will be replaced as an input by clients' orders in the second version of the software.
+
+The last parameter will be a checkbox in the case that the user want to do one and only one piece of lumber in the log (e.g. when the user wants battens he will do maybe 20 or 30 in one log doing only that). In that specific case we will just divide the log with the dimension of the wanted lumber repeatedly for the sides 3 and 4 instead of using a secondary lumber.
 
 With the three first values we can represent the log as a cylinder.
 
@@ -146,7 +149,7 @@ As a reference, the log is always on even ground which means that if there is a 
 
 In order to have a high quality and straight lumber<sup>[1](#lumber)</sup>, we will do the calculation from the smaller side.
 
-The wood type is needed to determine the thickness of the bark and the usable percentage for sawing.
+The wood type is needed to pass on the piece(-s) of lumber produced.
 
 The output of the algorithm will be the following:
 - The process of sawing with the cuts their number and their position (detailed steps)
@@ -167,6 +170,7 @@ In the case of lumber<sup>[1](#lumber)</sup>, each different lumber<sup>[1](#lum
 - Height
 - Length
 - Quantity
+- Wood type
 
 In the case of client's orders, they will be defined by:
 - Name of the client
@@ -252,7 +256,7 @@ Concerning the stocks, this information is of no use to anyone without the conte
 
 ## <b>Error Handling</b>
 
-The software will contain a solution for error handling that will, in defined and common cases, display the source of the error and tips to restore the software functionality so that the user can resolve the issue himself and avoid calling a technician.
+The software will contain a solution for error handling that will, in defined and common cases, display the source of the error and tips to restore the software functionality so that the user can resolve the issue themself and avoid calling a technician.
 Said error will include:
 - Wrong inputs
 - Known potential errors in the Algorithm
