@@ -78,7 +78,7 @@ Our Target audience will be small and medium-sized sawmills that work with small
 
 Here "Stock" refers to raw materials, lumber and blades
 
-## <b>The Optimisation Algorythm</b>
+## <b>The Optimisation Algorithm</b>
 
 <b>
 /!\ The following algorithm is only one way of doing the calculation, it may not be the best nor the most efficient of all as it is impossible to take into account the infinite number of variables in the shape of a wood log. People sawing wood should always verify that the output of this algorithm is possible in the specific case of the log they are sawing.
