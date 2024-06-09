@@ -222,7 +222,7 @@ This software will be heavely tested by users, in the case that a significant po
 ## References
 
 - [Functional Specifications](../Documents/FunctionalSpecifications.md)
-- [Test Plan]()
+- [Test Plan](../Documents/TestPlan.md)
 
 ## Glossary
 
