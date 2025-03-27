@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class OptimizeSawing extends StatefulWidget {
@@ -10,6 +12,7 @@ class OptimizeSawing extends StatefulWidget {
 class _OptimizeSawingState extends State<OptimizeSawing> {
   TextStyle styleTitle = TextStyle(fontSize: 30);
   bool repetition = false;
+  Size drawsize = Size(500,500);
 
   @override
   Widget build(BuildContext context){
@@ -60,7 +63,11 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                     textAlign: TextAlign.center,
                   ),
                   ElevatedButton(
-                    onPressed: () {}, 
+                    onPressed: () {
+                      setState(() {
+                        drawsize = Size(0,MediaQuery.sizeOf(context).height);
+                      });
+                    }, 
                     child: Text("Launch"),
                   ),
                 ],
@@ -73,11 +80,8 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
               color: Theme.of(context).colorScheme.primaryContainer,
               child: SingleChildScrollView(
                 child: CustomPaint(
+                  size: drawsize,
                   painter: Drawer(),
-                  child: Container(
-                    height: 600,
-                    width: 580,
-                  ),
                 ),
               ),
             ),
@@ -90,18 +94,16 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
 class Drawer extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
-    // TODO: implement paint
     final paint = Paint();
     paint.color = Colors.black;
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = 5;
     var a = Offset(size.width/2, size.height/2);
-    canvas.drawCircle(a, 60, paint);
+    canvas.drawCircle(a, (size.height/2)*0.7, paint);
+    canvas.drawRect(Rect.fromCenter(center: a, width: size.width, height: size.height), paint);
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
-    // throw UnimplementedError();
-    return false;
-  }
-
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+    
 }
