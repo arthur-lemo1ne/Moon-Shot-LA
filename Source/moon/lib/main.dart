@@ -33,6 +33,7 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage> {
   var selectedIndex = 0;
   var extended = false;
+  bool drawcuts = false;
 
   @override
   Widget build(BuildContext context){
