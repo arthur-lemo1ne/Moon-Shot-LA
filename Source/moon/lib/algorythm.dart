@@ -7,18 +7,19 @@ class Algorythm {
   static (List<Cut>, double?) simpleAlgorythm((double?,double) canvasSize, double logSize, Lumber lumber, double discoveryHeight){
     
     final output = <Cut>[];
-    double diameter = (canvasSize.$2*0.7);
-
+    double diameter = logSize; // Represent (canvasSize.$2*0.7);
     double currentY = -(diameter/2);
+    double scale =  (canvasSize.$2*0.7) / logSize;
+    print(scale);
 
     do {
       currentY += discoveryHeight;
 
-      double x1 = sqrt(pow((diameter / 2), 2) - pow(currentY, 2));
-      double x2 = -sqrt(pow((diameter / 2), 2) - pow(currentY, 2));
+      double x1 = sqrt(pow((diameter / 2), 2) - pow(currentY, 2)) * scale;
+      double x2 = -sqrt(pow((diameter / 2), 2) - pow(currentY, 2)) * scale;
 
-      Point p1 = Point(x1+canvasSize.$1!/2, currentY+canvasSize.$2/2);
-      Point p2 = Point(x2+canvasSize.$1!/2, currentY+canvasSize.$2/2);
+      Point p1 = Point(x1+canvasSize.$1!/2, currentY * scale+canvasSize.$2/2);
+      Point p2 = Point(x2+canvasSize.$1!/2, currentY * scale+canvasSize.$2/2);
       
       output.add(Cut(p1,p2));
       

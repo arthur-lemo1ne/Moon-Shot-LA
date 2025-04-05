@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/services.dart';
 import 'package:moon/algorythm.dart';
 import 'package:flutter/material.dart';
 import 'package:moon/types.dart';
@@ -46,6 +46,9 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                   ),
                   TextField(
                     textAlign: TextAlign.center,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
                     onChanged: (text) {
                       if(text == '')
                       {
@@ -88,11 +91,14 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                   ),
                   TextField(
                     textAlign: TextAlign.center,
-                    onSubmitted: (value) {
-                      discoveryHeight = double.parse(value);
-                    },
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
                     onChanged: (value) {
-                      discoveryHeight = double.parse(value);
+                    if(value !='')
+                      {
+                        discoveryHeight = double.parse(value);
+                      }                    
                     },
                   ),
                   ElevatedButton(
@@ -146,7 +152,7 @@ class Drawer extends CustomPainter{
     paint.color = Colors.black;
     paint.style = PaintingStyle.stroke;
     paint.strokeWidth = 4;
-     var a;
+    Offset a;
     if(drawSawCut == 0)
     {
       a = Offset(size.width/2, size.height/2);
