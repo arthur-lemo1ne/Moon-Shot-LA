@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
-import 'package:moon/algorythm.dart';
+import 'package:moon/algorythms.dart';
 import 'package:flutter/material.dart';
+import 'package:moon/algorythmsInputs.dart';
 import 'package:moon/types.dart';
 
 class OptimizeSawing extends StatefulWidget {
@@ -14,6 +15,16 @@ class OptimizeSawing extends StatefulWidget {
 class _OptimizeSawingState extends State<OptimizeSawing> {
 
   final GlobalKey key = GlobalKey();
+
+  // Algorythms
+  List<DropdownMenuItem<String>> SawTypes = [];
+  String? def = null;
+  SetTypes()
+  {
+    SawTypes.clear();
+    SawTypes.add(DropdownMenuItem(value: "Live Sawing",child: Text("Live Sawing")));
+    SawTypes.add(DropdownMenuItem(value: "Plain Sawing",child: Text("Plain Sawing")));
+  }
 
   // UI
   TextStyle styleTitle = TextStyle(fontSize: 30);
@@ -31,6 +42,21 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
 
   @override
   Widget build(BuildContext context){
+    SetTypes();
+    Widget sawing;
+    switch (def) {
+      case null:
+        sawing = Placeholder();
+        break;
+      case "Live Sawing":
+        sawing = Placeholder();
+        break;
+      case "Plain Sawing":
+        sawing = SawingInputs();
+        break;
+      default:
+        throw UnimplementedError('no widget for $def');
+    }
     return Row(
         children: [
           Expanded(
@@ -40,67 +66,19 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    "Log Size", 
-                    style: styleTitle,
-                  ),
-                  TextField(
-                    textAlign: TextAlign.center,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    onChanged: (text) {
-                      if(text == '')
-                      {
-                        logSize = 0;
-                      }
-                      else
-                      {
-                        logSize = double.parse(text);
-                      }
+                  DropdownButton(
+                    value: def,
+                    items: SawTypes, 
+                    onChanged: (value) 
+                    {
+                      def = value;
+                      setState(() {
+                        
+                      });
                     },
+                    hint: Text("here"),
                   ),
-                  Text(
-                    "Wanted Lumber",
-                    style: styleTitle,
-                  ),
-                  TextField(
-                    textAlign: TextAlign.center,
-                  ),
-                  TextField(
-                    textAlign: TextAlign.center,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Checkbox(
-                        value: repetition, 
-                        onChanged: (value) {
-                        setState(() {
-                          repetition = value!;
-                        });
-                      }),
-                      Text(
-                        "Repetition"
-                      )
-                    ],
-                  ),
-                  Text(
-                    "Discovery Plank",
-                    style: styleTitle,
-                  ),
-                  TextField(
-                    textAlign: TextAlign.center,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    onChanged: (value) {
-                    if(value !='')
-                      {
-                        discoveryHeight = double.parse(value);
-                      }                    
-                    },
-                  ),
+                  sawing,
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -113,6 +91,15 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                     }, 
                     child: Text("Launch"),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.fast_rewind)),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.skip_previous)),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.skip_next)),
+                      IconButton(onPressed: (){}, icon: const Icon(Icons.fast_forward)),
+                    ],
+                  )
                 ],
               ),
             ),
