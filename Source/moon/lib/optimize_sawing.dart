@@ -7,12 +7,20 @@ import 'package:moon/types.dart';
 class OptimizeSawing extends StatefulWidget {
   const OptimizeSawing({super.key});
 
+  
 
   @override
   State<OptimizeSawing> createState() => _OptimizeSawingState();
 }
 
 class _OptimizeSawingState extends State<OptimizeSawing> {
+
+  getInputs(double ilogsize, double idiscoverysize)
+  {
+    logSize = ilogsize;
+    discoveryHeight = idiscoverysize;
+  }
+
 
   final GlobalKey key = GlobalKey();
 
@@ -24,6 +32,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
     SawTypes.clear();
     SawTypes.add(DropdownMenuItem(value: "Live Sawing",child: Text("Live Sawing")));
     SawTypes.add(DropdownMenuItem(value: "Plain Sawing",child: Text("Plain Sawing")));
+    // url to keep : https://veneerhub.com/log-wood-sawing-skills/
   }
 
   // UI
@@ -52,7 +61,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
         sawing = Placeholder();
         break;
       case "Plain Sawing":
-        sawing = SawingInputs();
+        sawing = SawingInputs(getInputs);
         break;
       default:
         throw UnimplementedError('no widget for $def');
@@ -82,7 +91,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        print(discoveryHeight);
+                        print(logSize);
                         drawsize = Size(MediaQuery.sizeOf(context).width,MediaQuery.sizeOf(context).height);
                         var re = Algorythm.simpleAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, Lumber(150,18,200), discoveryHeight);
                         sawCuts = re.$1;

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SawingInputs extends StatefulWidget {
+  final Function(double, double) getInputs;
+  SawingInputs(this.getInputs);
   @override
   State<SawingInputs> createState() => _SawingInputsState();
 }
@@ -32,10 +34,12 @@ class _SawingInputsState extends State<SawingInputs> {
             if(text == '')
             {
               logSize = 0;
+              widget.getInputs(logSize, discoveryHeight);
             }
             else
             {
               logSize = double.parse(text);
+              widget.getInputs(logSize, discoveryHeight);
             }
           },
         ),
@@ -57,6 +61,7 @@ class _SawingInputsState extends State<SawingInputs> {
               onChanged: (value) {
               setState(() {
                 repetition = value!;
+                widget.getInputs(logSize, discoveryHeight);
               });
             }),
             Text(
@@ -77,10 +82,11 @@ class _SawingInputsState extends State<SawingInputs> {
           if(value !='')
             {
               discoveryHeight = double.parse(value);
+              widget.getInputs(logSize, discoveryHeight);
             }                    
           },
         ),
       ]
     );
-  }            
+  }      
 }
