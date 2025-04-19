@@ -58,10 +58,10 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
         sawing = Placeholder();
         break;
       case "Live Sawing":
-        sawing = Placeholder();
+        sawing = SawingInputsLive(getInputs);
         break;
       case "Plain Sawing":
-        sawing = SawingInputs(getInputs);
+        sawing = SawingInputsPlain(getInputs);
         break;
       default:
         throw UnimplementedError('no widget for $def');
@@ -93,9 +93,26 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                       setState(() {
                         print(logSize);
                         drawsize = Size(MediaQuery.sizeOf(context).width,MediaQuery.sizeOf(context).height);
-                        var re = Algorythm.simpleAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, Lumber(150,18,200), discoveryHeight);
-                        sawCuts = re.$1;
-                        si = re.$2;
+                        var re;
+                        switch (def) {
+                          case "Live Sawing":
+                            re = Algorythm.liveAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, discoveryHeight);
+                            sawCuts = re.$1;
+                            si = re.$2;
+                            break;
+                          case "Plain Sawing":
+                            re = Algorythm.plainAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, Lumber(150,18,200), discoveryHeight);
+                            sawCuts = re.$1;
+                            si = re.$2;
+                            break;
+                          default:
+                            break;
+                        }
+                        if(logSize != 0 && discoveryHeight != 0)
+                        {
+                          
+                        }
+                        
                       });
                     }, 
                     child: Text("Launch"),

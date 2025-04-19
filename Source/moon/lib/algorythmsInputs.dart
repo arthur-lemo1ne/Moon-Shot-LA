@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class SawingInputs extends StatefulWidget {
+class SawingInputsPlain extends StatefulWidget {
   final Function(double, double) getInputs;
-  SawingInputs(this.getInputs);
+  SawingInputsPlain(this.getInputs);
   @override
-  State<SawingInputs> createState() => _SawingInputsState();
+  State<SawingInputsPlain> createState() => _SawingInputsPlainState();
 }
 
-class _SawingInputsState extends State<SawingInputs> {
+class _SawingInputsPlainState extends State<SawingInputsPlain> {
   TextStyle styleTitle = TextStyle(fontSize: 30);
   double logSize = 0;
   bool repetition = false;
@@ -75,6 +75,66 @@ class _SawingInputsState extends State<SawingInputs> {
         ),
         TextField(
           textAlign: TextAlign.center,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly
+          ],
+          onChanged: (value) {
+          if(value !='')
+            {
+              discoveryHeight = double.parse(value);
+              widget.getInputs(logSize, discoveryHeight);
+            }                    
+          },
+        ),
+      ]
+    );
+  }      
+}
+
+class SawingInputsLive extends StatefulWidget {
+  final Function(double, double) getInputs;
+  SawingInputsLive(this.getInputs);
+  @override
+  State<SawingInputsLive> createState() => _SawingInputsLiveState();
+}
+
+class _SawingInputsLiveState extends State<SawingInputsLive> {
+  TextStyle styleTitle = TextStyle(fontSize: 30);
+  double logSize = 0;
+  bool repetition = false;
+  double discoveryHeight = 0;
+  @override
+  Widget build(BuildContext context){
+    return Column(
+      children: [
+        TextField(
+          textAlign: TextAlign.center,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: "Log Size",
+          ),
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly
+          ],
+          onChanged: (text) {
+            if(text == '')
+            {
+              logSize = 0;
+              widget.getInputs(logSize, discoveryHeight);
+            }
+            else
+            {
+              logSize = double.parse(text);
+              widget.getInputs(logSize, discoveryHeight);
+            }
+          },
+        ),
+        TextField(
+          textAlign: TextAlign.center,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: "Slab Thickness",
+          ),
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.digitsOnly
           ],
