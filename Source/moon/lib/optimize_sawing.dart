@@ -1,13 +1,10 @@
-import 'package:flutter/services.dart';
 import 'package:moon/algorythms.dart';
 import 'package:flutter/material.dart';
-import 'package:moon/algorythmsInputs.dart';
+import 'package:moon/algorythms_inputs.dart';
 import 'package:moon/types.dart';
 
 class OptimizeSawing extends StatefulWidget {
   const OptimizeSawing({super.key});
-
-  
 
   @override
   State<OptimizeSawing> createState() => _OptimizeSawingState();
@@ -25,13 +22,13 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
   final GlobalKey key = GlobalKey();
 
   // Algorythms
-  List<DropdownMenuItem<String>> SawTypes = [];
-  String? def = null;
-  SetTypes()
+  List<DropdownMenuItem<String>> sawTypes = [];
+  String? def;
+  setTypes()
   {
-    SawTypes.clear();
-    SawTypes.add(DropdownMenuItem(value: "Live Sawing",child: Text("Live Sawing")));
-    SawTypes.add(DropdownMenuItem(value: "Plain Sawing",child: Text("Plain Sawing")));
+    sawTypes.clear();
+    sawTypes.add(DropdownMenuItem(value: "Live Sawing",child: Text("Live Sawing")));
+    sawTypes.add(DropdownMenuItem(value: "Plain Sawing",child: Text("Plain Sawing")));
     // url to keep : https://veneerhub.com/log-wood-sawing-skills/
   }
 
@@ -51,7 +48,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
 
   @override
   Widget build(BuildContext context){
-    SetTypes();
+    setTypes();
     Widget sawing;
     switch (def) {
       case null:
@@ -77,13 +74,11 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                 children: [
                   DropdownButton(
                     value: def,
-                    items: SawTypes, 
+                    items: sawTypes, 
                     onChanged: (value) 
                     {
                       def = value;
-                      setState(() {
-                        
-                      });
+                      setState(() {});
                     },
                     hint: Text("here"),
                   ),
@@ -91,26 +86,24 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        print(logSize);
                         drawsize = Size(MediaQuery.sizeOf(context).width,MediaQuery.sizeOf(context).height);
-                        var re;
-                        switch (def) {
-                          case "Live Sawing":
-                            re = Algorythm.liveAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, discoveryHeight);
-                            sawCuts = re.$1;
-                            si = re.$2;
-                            break;
-                          case "Plain Sawing":
-                            re = Algorythm.plainAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, Lumber(150,18,200), discoveryHeight);
-                            sawCuts = re.$1;
-                            si = re.$2;
-                            break;
-                          default:
-                            break;
-                        }
+                        (List<Cut>, double?) re;
                         if(logSize != 0 && discoveryHeight != 0)
                         {
-                          
+                          switch (def) {
+                            case "Live Sawing":
+                              re = Algorythm.liveAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, discoveryHeight);
+                              sawCuts = re.$1;
+                              si = re.$2;
+                              break;
+                            case "Plain Sawing":
+                              re = Algorythm.plainAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, Lumber(150,18,200), discoveryHeight);
+                              sawCuts = re.$1;
+                              si = re.$2;
+                              break;
+                            default:
+                              break;
+                          }
                         }
                         
                       });

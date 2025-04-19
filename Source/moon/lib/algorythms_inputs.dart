@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 class SawingInputsPlain extends StatefulWidget {
   final Function(double, double) getInputs;
-  SawingInputsPlain(this.getInputs);
+  const SawingInputsPlain(this.getInputs, {super.key});
   @override
   State<SawingInputsPlain> createState() => _SawingInputsPlainState();
 }
@@ -93,7 +93,7 @@ class _SawingInputsPlainState extends State<SawingInputsPlain> {
 
 class SawingInputsLive extends StatefulWidget {
   final Function(double, double) getInputs;
-  SawingInputsLive(this.getInputs);
+  const SawingInputsLive(this.getInputs, {super.key});
   @override
   State<SawingInputsLive> createState() => _SawingInputsLiveState();
 }
@@ -129,6 +129,7 @@ class _SawingInputsLiveState extends State<SawingInputsLive> {
             }
           },
         ),
+        Container(height: 50,),
         TextField(
           textAlign: TextAlign.center,
           decoration: const InputDecoration(

@@ -10,7 +10,7 @@ class Algorythm {
     double diameter = logSize; // Represent (canvasSize.$2*0.7);
     double currentY = -(diameter/2);
     double currentX = diameter/2;
-    double currentY2 = (diameter/2);
+    //double currentY2 = (diameter/2);
     double scale =  (canvasSize.$2*0.7) / logSize;
     bool flag = false;
 
