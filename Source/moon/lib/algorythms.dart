@@ -7,6 +7,8 @@ class Algorythm {
   static (List<Cut>, double?) plainAlgorythm((double?,double) canvasSize, double logSize, Lumber lumber, double discoveryHeight){
     
     final output = <Cut>[];
+    
+    output.add(Cut(Point(canvasSize.$2/2 - canvasSize.$2/2*0.7,100),Point(0,0)));
     double diameter = logSize; // Represent (canvasSize.$2*0.7);
     double currentY = -(diameter/2);
     double currentX = diameter/2;

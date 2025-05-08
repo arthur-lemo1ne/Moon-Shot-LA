@@ -168,7 +168,6 @@ class Drawer extends CustomPainter{
       a = Offset(drawSawCut!/2, size.height/2);
     }
     canvas.drawCircle(a, (size.height/2)*0.7, paint);
-    //canvas.drawRect(Rect.fromCenter(center: a, width: size.width, height: size.height), paint);
     
       for(int i = 0; i < sawCuts.length; i++)
       {
