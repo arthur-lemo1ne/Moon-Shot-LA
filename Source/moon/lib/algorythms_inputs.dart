@@ -17,10 +17,6 @@ class _SawingInputsPlainState extends State<SawingInputsPlain> {
   Widget build(BuildContext context){
     return Column(
       children: [
-        Text(
-          "Log Size", 
-          style: styleTitle,
-        ),
         TextField(
           textAlign: TextAlign.center,
           decoration: const InputDecoration(
@@ -69,10 +65,6 @@ class _SawingInputsPlainState extends State<SawingInputsPlain> {
             )
           ],
         ),
-        Text(
-          "Discovery Plank",
-          style: styleTitle,
-        ),
         TextField(
           textAlign: TextAlign.center,
           inputFormatters: <TextInputFormatter>[
@@ -85,6 +77,10 @@ class _SawingInputsPlainState extends State<SawingInputsPlain> {
               widget.getInputs(logSize, discoveryHeight);
             }                    
           },
+          decoration: const InputDecoration(
+            labelText: "Discovery Plank",
+            border: OutlineInputBorder(),
+          ),
         ),
       ]
     );

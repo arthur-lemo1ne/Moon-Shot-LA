@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.settings),
-                        label: Text('Setting'),
+                        label: Text('Settings'),
                       ),
                     ],
                     onDestinationSelected: (value) {

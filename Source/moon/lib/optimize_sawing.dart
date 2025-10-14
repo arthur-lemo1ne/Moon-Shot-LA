@@ -45,6 +45,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
 
   // Outputs
   List<Cut> sawCuts = List.empty();
+  int currentCutIndex = 0;
 
   @override
   Widget build(BuildContext context){
@@ -80,7 +81,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                       def = value;
                       setState(() {});
                     },
-                    hint: Text("here"),
+                    hint: Text("Sawing type"),
                   ),
                   sawing,
                   ElevatedButton(
@@ -90,6 +91,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                         (List<Cut>, double?) re;
                         if(logSize != 0 && discoveryHeight != 0)
                         {
+                          currentCutIndex = 0;
                           switch (def) {
                             case "Live Sawing":
                               re = Algorythm.liveAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, discoveryHeight);
@@ -105,7 +107,6 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                               break;
                           }
                         }
-                        
                       });
                     }, 
                     child: Text("Launch"),
@@ -113,12 +114,32 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.fast_rewind)),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.skip_previous)),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.skip_next)),
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.fast_forward)),
+                      IconButton(onPressed: (){
+                        setState(() {
+                            currentCutIndex = 0;
+                        });}, icon: const Icon(Icons.fast_rewind)),
+                      IconButton(onPressed: (){
+                        setState(() {
+                          if(currentCutIndex > 0)
+                          {
+                            currentCutIndex --;
+                          }
+                        });}, icon: const Icon(Icons.skip_previous)),
+                      IconButton(onPressed: (){setState(() {
+                          if(sawCuts.length > currentCutIndex)
+                          {
+                            currentCutIndex ++;
+                          }
+                        });}, icon: const Icon(Icons.skip_next)),
+                      IconButton(onPressed: (){setState(() {
+                          if(sawCuts.length != currentCutIndex)
+                          {
+                            currentCutIndex = sawCuts.length;
+                          }
+                        });}, icon: const Icon(Icons.fast_forward)),
                     ],
-                  )
+                  ),
+                  Text(currentCutIndex.toString()),
                 ],
               ),
             ),
@@ -131,7 +152,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                 child: CustomPaint(
                   key: key,
                   size: drawsize,
-                  painter: Drawer(sawCuts, si),
+                  painter: Drawer(sawCuts, si, currentCutIndex),
                 ),
               ),
             ),
@@ -142,9 +163,9 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
 }
 
 class Drawer extends CustomPainter{
-
-  Drawer(List<Cut> input, double? circle){
+  Drawer(List<Cut> input, double? circle, int currentCutIndex){
     sawCuts = input;
+    currentIndex = currentCutIndex;
     if(circle != null)
     {
       drawSawCut = circle;
@@ -152,13 +173,23 @@ class Drawer extends CustomPainter{
   }
   double? drawSawCut = 0;
   List<Cut> sawCuts = List.empty();
+  int currentIndex = 0;
   @override
   void paint(Canvas canvas, Size size) {
+    //Parameters
     final paint = Paint();
     paint.color = Colors.black;
     paint.style = PaintingStyle.stroke;
     paint.strokeWidth = 4;
     Offset a;
+
+    const textStyle = TextStyle(
+      color: Colors.black,
+      fontSize: 20,
+    );
+
+
+    //Log
     if(drawSawCut == 0)
     {
       a = Offset(size.width/2, size.height/2);
@@ -168,11 +199,25 @@ class Drawer extends CustomPainter{
       a = Offset(drawSawCut!/2, size.height/2);
     }
     canvas.drawCircle(a, (size.height/2)*0.7, paint);
-    
-      for(int i = 0; i < sawCuts.length; i++)
-      {
-        canvas.drawLine(Offset(sawCuts[i].a.x, sawCuts[i].a.y), Offset(sawCuts[i].b.x, sawCuts[i].b.y), paint);
-      }
+
+    //sawcuts
+    for(int i = 0; i < currentIndex; i++)
+    {
+      canvas.drawLine(Offset(sawCuts[i].a.x, sawCuts[i].a.y), Offset(sawCuts[i].b.x, sawCuts[i].b.y), paint);
+      var textspan = TextSpan(
+        text: sawCuts[i].a.y.toString(),
+        style: textStyle,
+      );
+      var textPainter = TextPainter(
+        text: textspan,
+        textDirection: TextDirection.ltr,
+      );
+      textPainter.layout(
+        minWidth: 0,
+        maxWidth: size.width,
+      );
+      textPainter.paint(canvas, Offset(sawCuts[i].a.x+30, sawCuts[i].a.y-15));
+    }
 
   }
 
