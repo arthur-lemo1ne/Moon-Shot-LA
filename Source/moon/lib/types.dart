@@ -33,9 +33,9 @@ class Cut{
 }
 
 class Lumber{
-  double? width;
-  double? height;
-  double? length;
+  double width=0;
+  double height=0;
+  double length=0;
   Lumber(double inputWidth, double inputHeight, double inputLength)
   {
     width = inputWidth;

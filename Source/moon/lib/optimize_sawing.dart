@@ -18,6 +18,14 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
     discoveryHeight = idiscoverysize;
   }
 
+  getInputsP(double ilogsize, double idiscoverysize, double iWidth, double iHeight)
+  {
+    logSize = ilogsize;
+    discoveryHeight = idiscoverysize;
+    wanted.width = iWidth;
+    wanted.height = iHeight;
+  }
+
 
   final GlobalKey key = GlobalKey();
 
@@ -41,6 +49,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
   double logSize = 0.0;
   double? si;
   double discoveryHeight = 0;
+  Lumber wanted = Lumber(0,0,0);
 
 
   // Outputs
@@ -59,7 +68,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
         sawing = SawingInputsLive(getInputs);
         break;
       case "Plain Sawing":
-        sawing = SawingInputsPlain(getInputs);
+        sawing = SawingInputsPlain(getInputsP);
         break;
       default:
         throw UnimplementedError('no widget for $def');
@@ -99,7 +108,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                               si = re.$2;
                               break;
                             case "Plain Sawing":
-                              re = Algorythm.plainAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, Lumber(150,18,200), discoveryHeight);
+                              re = Algorythm.plainAlgorythm((key.currentContext?.size?.width, drawsize.height) , logSize, wanted, discoveryHeight);
                               sawCuts = re.$1;
                               si = re.$2;
                               break;
@@ -152,7 +161,7 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
                 child: CustomPaint(
                   key: key,
                   size: drawsize,
-                  painter: Drawer(sawCuts, si, currentCutIndex),
+                  painter: Drawer(sawCuts, si, currentCutIndex, logSize),
                 ),
               ),
             ),
@@ -163,14 +172,16 @@ class _OptimizeSawingState extends State<OptimizeSawing> {
 }
 
 class Drawer extends CustomPainter{
-  Drawer(List<Cut> input, double? circle, int currentCutIndex){
+  Drawer(List<Cut> input, double? circle, int currentCutIndex, double InLogS){
     sawCuts = input;
+    LogS = InLogS;
     currentIndex = currentCutIndex;
     if(circle != null)
     {
       drawSawCut = circle;
     }
   }
+  double LogS = 0;
   double? drawSawCut = 0;
   List<Cut> sawCuts = List.empty();
   int currentIndex = 0;
@@ -181,6 +192,12 @@ class Drawer extends CustomPainter{
     paint.color = Colors.black;
     paint.style = PaintingStyle.stroke;
     paint.strokeWidth = 4;
+
+    final paintR = Paint();
+    paintR.color = Colors.red;
+    paintR.style = PaintingStyle.stroke;
+    paintR.strokeWidth = 4;
+
     Offset a;
 
     const textStyle = TextStyle(
@@ -198,14 +215,25 @@ class Drawer extends CustomPainter{
     {
       a = Offset(drawSawCut!/2, size.height/2);
     }
-    canvas.drawCircle(a, (size.height/2)*0.7, paint);
+    
 
     //sawcuts
     for(int i = 0; i < currentIndex; i++)
     {
-      canvas.drawLine(Offset(sawCuts[i].a.x, sawCuts[i].a.y), Offset(sawCuts[i].b.x, sawCuts[i].b.y), paint);
+      if(i == currentIndex-1)
+      {
+        canvas.drawLine(Offset(sawCuts[i].a.x, sawCuts[i].a.y), Offset(sawCuts[i].b.x, sawCuts[i].b.y), paintR);
+      }
+      else
+      {
+        canvas.drawLine(Offset(sawCuts[i].a.x, sawCuts[i].a.y), Offset(sawCuts[i].b.x, sawCuts[i].b.y), paint);
+      }
+      var scale = (size.height*0.7) / LogS;
+      var cutHeight = (size.height/2+((size.height/2)*0.7))-sawCuts[i].a.y ;//* scale;
+      cutHeight /= scale;
+
       var textspan = TextSpan(
-        text: sawCuts[i].a.y.toString(),
+        text: cutHeight.round().toString() + " mm",
         style: textStyle,
       );
       var textPainter = TextPainter(
@@ -216,8 +244,10 @@ class Drawer extends CustomPainter{
         minWidth: 0,
         maxWidth: size.width,
       );
-      textPainter.paint(canvas, Offset(sawCuts[i].a.x+30, sawCuts[i].a.y-15));
+      textPainter.paint(canvas, Offset(size.width*0.8, sawCuts[i].a.y-15));
     }
+
+    canvas.drawCircle(a, (size.height/2)*0.7, paint);
 
   }
 

@@ -12,7 +12,9 @@ class Algorythm {
     double diameter = logSize; // Represent (canvasSize.$2*0.7);
     double currentY = -(diameter/2);
     double currentX = diameter/2;
-    //double currentY2 = (diameter/2);
+    double currentY2 = (diameter/2);
+    double lastCutY2=0;
+    double currentX2 = -(diameter/2);
     double scale =  (canvasSize.$2*0.7) / logSize;
     bool flag = false;
 
@@ -56,10 +58,99 @@ class Algorythm {
 
     } while (currentX > (diameter*0.7)/2 && !flag);
 
-    //Third Side
+    //Third Side 1
     do {
-      
-    } while (false);
+      currentY2 -= discoveryHeight;
+      double x1; 
+      double x2; 
+      if(currentY2 < sqrt(pow((diameter / 2), 2) - pow(currentX, 2)))
+      {
+        x1 = currentX*scale;
+        x2 =-sqrt(pow((diameter / 2), 2) - pow(currentY2, 2)) * scale;
+      }
+      else
+      {
+        x1 = sqrt(pow((diameter / 2), 2) - pow(currentY2, 2)) * scale;
+        x2 = -sqrt(pow((diameter / 2), 2) - pow(currentY2, 2)) * scale;
+      }
+      Point p1 = Point(x1+canvasSize.$1!/2, currentY2 * scale + canvasSize.$2/2);
+      Point p2 = Point(x2+canvasSize.$1!/2, currentY2 * scale + canvasSize.$2/2);
+      output.add(Cut(p1,p2));
+    } while (currentY2 >(diameter*0.7)/2);
+    //Check rest y
+    lastCutY2 = currentY2;
+    if((currentY - lastCutY2) % lumber.height != 0)
+    {
+      double t = lastCutY2 - (-(currentY - lastCutY2) % lumber.height);
+      double x1 = currentX * scale;
+      double x2 = -sqrt(pow((diameter / 2), 2) - pow(t, 2)) * scale;
+      Point p1 = Point(x1+canvasSize.$1!/2, t * scale + canvasSize.$2/2);
+      Point p2 = Point(x2+canvasSize.$1!/2, t * scale + canvasSize.$2/2);
+      output.add(Cut(p1,p2));
+      currentY2 = t;
+    }
+    //Third Side 2
+    do {
+      currentY2 -= lumber.height;
+      if(currentY2 <= currentY)
+      {
+        break;
+      }
+      double x1 = currentX * scale;
+      double x2 = -sqrt(pow((diameter / 2), 2) - pow(currentY2, 2)) * scale;
+      Point p1 = Point(x1+canvasSize.$1!/2, currentY2 * scale + canvasSize.$2/2);
+      Point p2 = Point(x2+canvasSize.$1!/2, currentY2 * scale + canvasSize.$2/2);
+      output.add(Cut(p1,p2));
+    } while (currentY2 > currentY);
+
+    //Check rest x
+    if((currentX - (-diameter/2)%lumber.width != 0))
+    {
+      currentX2 += (currentX - (-diameter/2)) % lumber.width;
+      double y1;
+      double y2;
+      if(currentY > -sqrt(pow((diameter / 2), 2) - pow(currentX2, 2)))
+      {
+        y1 = currentY * scale;
+        y2 = lastCutY2 * scale;
+      }
+      else
+      {
+        y1 = sqrt(pow((diameter / 2), 2) - pow(currentX2, 2)) * scale;
+        y2 = -sqrt(pow((diameter / 2), 2) - pow(currentX2, 2)) * scale;
+      }
+
+      Point p1 = Point(currentX2*scale+canvasSize.$1!/2, y1+canvasSize.$2/2); 
+      Point p2 = Point(currentX2*scale+canvasSize.$1!/2, y2+canvasSize.$2/2); 
+      output.add(Cut(p1,p2));
+
+    }
+
+    //Fourth Side
+    do {
+      currentX2 += lumber.width;
+      if(currentX2 >= currentX)
+      {
+        break;
+      }
+      double y1;
+      double y2;
+      if(currentY > -sqrt(pow((diameter / 2), 2) - pow(currentX2, 2)))
+      {
+        y1 = currentY * scale;
+        y2 = lastCutY2 * scale;
+      }
+      else
+      {
+        y1 = sqrt(pow((diameter / 2), 2) - pow(currentX2, 2)) * scale;
+        y2 = -sqrt(pow((diameter / 2), 2) - pow(currentX2, 2)) * scale;
+      }
+
+      Point p1 = Point(currentX2*scale+canvasSize.$1!/2, y1+canvasSize.$2/2); 
+      Point p2 = Point(currentX2*scale+canvasSize.$1!/2, y2+canvasSize.$2/2); 
+
+      output.add(Cut(p1,p2));
+    } while (currentX2 < currentX);
 
     return (output,canvasSize.$1);
   }
@@ -72,6 +163,10 @@ class Algorythm {
 
     do {
       currentY += slabThickness;
+      if(currentY >= diameter/2)
+      {
+        break;
+      }
 
       double x1 = sqrt(pow((diameter / 2), 2) - pow(currentY, 2)) * scale;
       double x2 = -sqrt(pow((diameter / 2), 2) - pow(currentY, 2)) * scale;
